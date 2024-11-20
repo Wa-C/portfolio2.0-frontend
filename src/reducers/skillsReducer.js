@@ -1,14 +1,28 @@
 // src/reducers/skillsReducer.js
-import { skillsData } from '../mockData';
 
 const initialState = {
-  list: skillsData, // Populate with mock data initially
-};
-
-export default function skillsReducer(state = initialState, action) {
-  switch (action.type) {
-    // Handle actions to add, update, or remove skills
-    default:
-      return state;
+    list: [],
+    loading: false,
+    error: null,
+  };
+  
+  export default function skillsReducer(state = initialState, action) {
+    switch (action.type) {
+      case 'FETCH_SKILLS_SUCCESS':
+        return {
+          ...state,
+          list: action.payload,
+          loading: false,
+        };
+      case 'FETCH_SKILLS_FAIL':
+        return {
+          ...state,
+          error: action.payload,
+          loading: false,
+        };
+      // Handle other actions
+      default:
+        return state;
+    }
   }
-}
+  

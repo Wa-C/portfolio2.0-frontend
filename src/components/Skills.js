@@ -1,10 +1,15 @@
 // src/components/Skills.js
-import React from 'react';
-import { useSelector } from 'react-redux';
- 
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchSkills } from '../actions/skillsActions';
+
 function Skills() {
+  const dispatch = useDispatch();
   const skills = useSelector((state) => state.skills.list);
-  console.log(skills)
+
+  useEffect(() => {
+    dispatch(fetchSkills());
+  }, [dispatch]);
 
   return (
     <div>

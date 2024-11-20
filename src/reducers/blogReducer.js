@@ -1,14 +1,32 @@
 // src/reducers/blogReducer.js
-import { blogData } from '../mockData';
 
 const initialState = {
-  posts: blogData || [], // Initialize with mock data or an empty array
-};
-
-export default function blogReducer(state = initialState, action) {
-  switch (action.type) {
-    // Add cases for blog actions here
-    default:
-      return state;
+    posts: [],
+    loading: false,
+    error: null,
+  };
+  
+  export default function blogReducer(state = initialState, action) {
+    switch (action.type) {
+      case 'FETCH_BLOG_POSTS_REQUEST':
+        return {
+          ...state,
+          loading: true,
+        };
+      case 'FETCH_BLOG_POSTS_SUCCESS':
+        return {
+          ...state,
+          posts: action.payload,
+          loading: false,
+        };
+      case 'FETCH_BLOG_POSTS_FAIL':
+        return {
+          ...state,
+          error: action.payload,
+          loading: false,
+        };
+      default:
+        return state;
+    }
   }
-}
+  

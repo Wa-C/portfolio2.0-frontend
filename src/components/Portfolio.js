@@ -1,24 +1,37 @@
 // src/components/Portfolio.js
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProjects } from '../actions/portfolioActions';
 
 function Portfolio() {
-  const projects = useSelector((state) => state.portfolio?.projects || []);
+  const dispatch = useDispatch();
+  const { projects, loading, error } = useSelector((state) => state.portfolio);
+
+  useEffect(() => {
+    dispatch(fetchProjects());
+  }, [dispatch]);
+
+  if (loading) return <p>Loading projects...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
       <h2>Portfolio</h2>
       <ul>
-        {projects.length > 0 ? (
-          projects.map((project) => (
-            <li key={project.id}>
-              <h3>{project.name}</h3>
-              <p>{project.description}</p>
-            </li>
-          ))
-        ) : (
-          <p>No projects available.</p>
-        )}
+        {projects.map((project) => (
+          <li key={project.id}>
+            <h3>{project.project_name}</h3>
+            <p>{project.description}</p>
+            {project.image_url && <img src={project.image_url} alt={project.project_name} />}
+            {project.project_url && (
+              <p>
+                <a href={project.project_url} target="_blank" rel="noopener noreferrer">
+                  View Project
+                </a>
+              </p>
+            )}
+          </li>
+        ))}
       </ul>
     </div>
   );

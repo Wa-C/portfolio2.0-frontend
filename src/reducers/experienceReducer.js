@@ -1,14 +1,32 @@
 // src/reducers/experienceReducer.js
-import { experienceData } from '../mockData';
 
 const initialState = {
-  list: experienceData,
-};
-
-export default function experienceReducer(state = initialState, action) {
-  switch (action.type) {
-    // Handle actions when integrating with backend
-    default:
-      return state;
+    list: [],
+    loading: false,
+    error: null,
+  };
+  
+  export default function experienceReducer(state = initialState, action) {
+    switch (action.type) {
+      case 'FETCH_EXPERIENCES_REQUEST':
+        return {
+          ...state,
+          loading: true,
+        };
+      case 'FETCH_EXPERIENCES_SUCCESS':
+        return {
+          ...state,
+          list: action.payload,
+          loading: false,
+        };
+      case 'FETCH_EXPERIENCES_FAIL':
+        return {
+          ...state,
+          error: action.payload,
+          loading: false,
+        };
+      default:
+        return state;
+    }
   }
-}
+  

@@ -1,9 +1,18 @@
 // src/components/Experience.js
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchExperiences } from '../actions/experienceActions';
 
 function Experience() {
-  const experiences = useSelector((state) => state.experience.list);
+  const dispatch = useDispatch();
+  const { list: experiences, loading, error } = useSelector((state) => state.experience);
+
+  useEffect(() => {
+    dispatch(fetchExperiences());
+  }, [dispatch]);
+
+  if (loading) return <p>Loading experiences...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
