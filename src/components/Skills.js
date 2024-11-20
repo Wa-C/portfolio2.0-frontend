@@ -1,7 +1,7 @@
 // src/components/Skills.js
 import React from 'react';
 import { useSelector } from 'react-redux';
-
+ 
 function Skills() {
   const skills = useSelector((state) => state.skills.list);
   console.log(skills)
