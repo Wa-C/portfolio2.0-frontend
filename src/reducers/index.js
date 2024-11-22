@@ -6,9 +6,11 @@ import blogReducer from './blogReducer';
 import skillsReducer from './skillsReducer';
 import bannerReducer from './bannerReducer';
 import experienceReducer from './experienceReducer';
+import contactMessageReducer from './contactMessageReducer';
 
 const rootReducer = combineReducers({
   portfolio: portfolioReducer,
+  contactMessage: contactMessageReducer,
   services: servicesReducer,
   blog: blogReducer,
   skills: skillsReducer,

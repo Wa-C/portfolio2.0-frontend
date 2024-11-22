@@ -2,9 +2,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import AdminPanel from './components/AdminPanel';
+//import AdminPanel from './components/AdminPanel';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
+import Dashboard from './components/Dashboard';
 
 function App() {
   console.log('App is rendering');
@@ -16,7 +17,7 @@ function App() {
           path="/admin/*"
           element={
             <PrivateRoute>
-              <AdminPanel />
+              <Dashboard />
             </PrivateRoute>
           }
         />

@@ -6,7 +6,7 @@ import Experience from './Experience';
 import Portfolio from './Portfolio';
 import Services from './Services';
 import Blog from './Blog';
-import Contact from './Contact';
+//import Contact from './Contact';
 
 function Home() {
   
@@ -18,7 +18,7 @@ function Home() {
       <Portfolio />
       <Services />
       <Blog />
-      <Contact />
+     
     </>
   );
 }
